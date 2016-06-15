@@ -1,0 +1,23 @@
+From d7bce9c2e2aab2e62f2d4eba7385fa0d8c889c66 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jos=C3=A9=20Ignacio=20Alamos=20Aste?= <jialamos@uc.cl>
+Date: Mon, 3 Oct 2016 16:22:13 -0300
+Subject: [PATCH] fixed collision in openthread-types.h
+
+---
+ include/openthread-types.h | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/include/openthread-types.h b/include/openthread-types.h
+index 49c27c8..e0fa08c 100644
+--- a/include/openthread-types.h
++++ b/include/openthread-types.h
+@@ -60,8 +60,7 @@ extern "C" {
+ #define CONTAINING_RECORD(address, type, field) \
+     ((type *)((uint8_t*)(address) - offsetof(type, field)))
+ #pragma GCC diagnostic pop*/
+-#define BASE 0x1
+-#define myoffsetof(s,m) (((size_t)&(((s*)BASE)->m))-BASE)
++#define myoffsetof(s,m) (((size_t)&(((s*)1)->m))-1)
+ #define CONTAINING_RECORD(address, type, field) \
+     ((type *)((uint8_t*)(address) - myoffsetof(type, field)))
+ #endif /* CONTAINING_RECORD */

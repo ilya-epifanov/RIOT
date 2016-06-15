@@ -48,7 +48,9 @@ typedef uint16_t gpio_t;
 /**
  * @brief   Length of the CPU_ID in octets
  */
+#ifndef CPUID_LEN
 #define CPUID_LEN           (16U)
+#endif
 
 /**
  * @brief   Generate GPIO mode bitfields

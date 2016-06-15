@@ -84,6 +84,10 @@
 #include "lwip.h"
 #endif
 
+#ifdef MODULE_OPENTHREAD
+#include "ot.h"
+#endif
+
 #ifdef MODULE_FIB
 #include "net/fib.h"
 #endif
@@ -172,6 +176,9 @@ void auto_init(void)
 #ifdef MODULE_GCOAP
     DEBUG("Auto init gcoap module.\n");
     gcoap_init();
+#ifdef MODULE_OPENTHREAD
+    extern void openthread_bootstrap(void);
+    openthread_bootstrap();
 #endif
 
 /* initialize network devices */
